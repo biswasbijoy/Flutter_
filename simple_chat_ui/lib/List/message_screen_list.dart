@@ -1,4 +1,4 @@
-import 'dart:js';
+// import 'dart:js';
 
 import 'package:simple_chat_ui/List/chat_screen_list.dart';
 import 'package:simple_chat_ui/model/chat_model.dart';
