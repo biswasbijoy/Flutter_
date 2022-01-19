@@ -1,46 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:simple_chat_ui/Contents/drawer_components.dart';
 import 'package:simple_chat_ui/Contents/home_screen_contents.dart';
-import 'package:simple_chat_ui/List/message_screen_list.dart';
-import 'package:simple_chat_ui/Screens/chat_screen.dart';
-import 'package:simple_chat_ui/model/chat_model.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) => DefaultTabController(
+      length: 4,
+      child: Scaffold(
         appBar: AppBar(
-      backgroundColor: Colors.purple.shade900,
-      title: Text('Simple Chat App'),
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(30),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Icon(Icons.camera_alt),
-          GestureDetector(
-            child: Text(
-              "Chat",
-              style: TextStyle(color: Colors.white, fontSize: 16),
+          title: Text(
+            "AirMail",
+            style: TextStyle(
+                color: Color(0xffffff00),
+                fontSize: 25,
+                fontWeight: FontWeight.bold),
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blueAccent,
+                  Colors.redAccent,
+                  Colors.purple,
+                ],
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+              ),
             ),
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => ChatData()));
-            },
           ),
-          Text(
-            'Contacts',
-            style: TextStyle(color: Colors.white, fontSize: 16),
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_outlined)),
+          ],
+          bottom: TabBar(
+            indicatorColor: Colors.orange,
+            indicatorWeight: 5,
+            tabs: [
+              Tab(icon: Icon(Icons.camera_alt), text: 'Camera'),
+              Tab(icon: Icon(Icons.inbox), text: 'Inbox'),
+              Tab(icon: Icon(Icons.people), text: 'Contact'),
+              Tab(icon: Icon(Icons.call), text: 'Calls'),
+            ],
           ),
-          Text(
-            'Calls',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-        ]),
-      ),
-      actions: [
-        Icon(Icons.search),
-        Icon(Icons.more_vert),
-      ],
-    ));
-  }
+          elevation: 20,
+          titleSpacing: 20,
+        ),
+        drawer: DrawerComponent(),
+        body: TabBarView(
+          children: [
+            buildPage('Feed Page'),
+            ChatData(),
+            buildPage('Profile Page'),
+            buildPage('Settings Page'),
+          ],
+        ),
+      ));
+
+  Widget buildPage(String text) => Center(
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 28),
+        ),
+      );
 }

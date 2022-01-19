@@ -189,6 +189,24 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.call)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.video_call)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_outlined)),
+        ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blueAccent,
+                Colors.redAccent,
+                Colors.purple,
+              ],
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+            ),
+          ),
+        ),
         brightness: Brightness.dark,
         centerTitle: true,
         title: RichText(
