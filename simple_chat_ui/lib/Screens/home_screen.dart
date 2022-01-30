@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             tabs: [
               Tab(icon: Icon(Icons.camera_alt), text: 'Camera'),
               Tab(icon: Icon(Icons.inbox), text: 'Inbox'),
-              Tab(icon: Icon(Icons.people), text: 'Contact'),
+              Tab(icon: Icon(Icons.people), text: 'Contacts'),
               Tab(icon: Icon(Icons.call), text: 'Calls'),
             ],
           ),
@@ -54,11 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: DrawerComponent(),
         body: TabBarView(
+
           children: [
-            buildPage('Feed Page'),
+            buildPage('Camera Page'),
             ChatData(),
-            buildPage('Profile Page'),
-            buildPage('Settings Page'),
+            buildPage('Contacts Page'),
+            buildPage('Calls Page'),
           ],
         ),
       ));
